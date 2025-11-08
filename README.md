@@ -17,4 +17,4 @@ The project is updated almost daily, though commits to this repository may not r
 
 Everything here is subject to change as development progresses.
 
-If you’d like to follow progress, check back every week or two for updates.
+If you’d like to follow progress, check back every so often.

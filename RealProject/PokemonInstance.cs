@@ -30,6 +30,8 @@ namespace RealProject
 
         public int hpStat, atkStat, defStat, spaStat, spdStat, speStat;
 
+        public int atkModifier, defModifier, spaModifier, spdModifier, speModifier, accModifier, evaModifier;
+
         public Texture2D frontTexture, backTexture;
 
         public MoveInstance[] moveset;
@@ -43,7 +45,7 @@ namespace RealProject
         {
             this.id = id;
             this.name = name;
-            this.level = level;
+            this.level = level - 1;
             this.expGainIndex = expGainIndex;
 
             if (isShiny)
@@ -73,13 +75,13 @@ namespace RealProject
             spdIV = RandomIV("spd", playerTeam);
             speIV = RandomIV("spe", playerTeam);
 
+            RecalculateLevelAndExp();
+
             List<MoveInstance> entireMoveset = DatabaseManager.GetPokemonPriorMoves(id, 5);
             moveset = entireMoveset.Skip(Math.Max(0, entireMoveset.Count - 4)).Take(4).ToArray();
 
             foreach (var v in moveset)
                 Debug.WriteLine(v.name);
-
-            RecalculateLevelAndExp();
 
             currentHealth = hpStat;
         }
@@ -91,34 +93,37 @@ namespace RealProject
 
             foreach (var v in playerTeam)
             {
-                if (v.id == id)
+                if (v != null)
                 {
-                    switch (ivCase)
+                    if (v.id == id)
                     {
-                        case "hp":
-                            iv += v.hpIV;
-                            amount++;
-                            break;
-                        case "atk":
-                            iv += v.atkIV;
-                            amount++;
-                            break;
-                        case "def":
-                            iv += v.defIV;
-                            amount++;
-                            break;
-                        case "spa":
-                            iv += v.spaIV;
-                            amount++;
-                            break;
-                        case "spd":
-                            iv += v.spdIV;
-                            amount++;
-                            break;
-                        case "spe":
-                            iv += v.speIV;
-                            amount++;
-                            break;
+                        switch (ivCase)
+                        {
+                            case "hp":
+                                iv += v.hpIV;
+                                amount++;
+                                break;
+                            case "atk":
+                                iv += v.atkIV;
+                                amount++;
+                                break;
+                            case "def":
+                                iv += v.defIV;
+                                amount++;
+                                break;
+                            case "spa":
+                                iv += v.spaIV;
+                                amount++;
+                                break;
+                            case "spd":
+                                iv += v.spdIV;
+                                amount++;
+                                break;
+                            case "spe":
+                                iv += v.speIV;
+                                amount++;
+                                break;
+                        }
                     }
                 }
             }
@@ -244,6 +249,40 @@ namespace RealProject
             exp += 1;
 
             return (int)exp;
+        }
+
+        public PokemonInstance DuplicatePokemon()
+        {
+            PokemonInstance dupedPoke = new PokemonInstance(id, name, 0, 0, isShiny, level, expGainIndex, [hpBase, atkBase, defBase, spaBase, spdBase, speBase], type1, type2);
+            dupedPoke.moveset = moveset;
+            dupedPoke.statusCondition = statusCondition;
+            dupedPoke.volatileStatuses = volatileStatuses;
+
+            dupedPoke.hpIV = hpIV;
+            dupedPoke.atkIV = atkIV;
+            dupedPoke.defIV = defIV;
+            dupedPoke.spaIV = spaIV;
+            dupedPoke.spdIV = spdIV;
+            dupedPoke.speIV = speIV;
+
+            dupedPoke.hpStat = hpStat;
+            dupedPoke.atkStat = atkStat;
+            dupedPoke.defStat = defStat;
+            dupedPoke.spaStat = spaStat;
+            dupedPoke.spdStat = spdStat;
+            dupedPoke.speStat = speStat;
+
+            dupedPoke.evaModifier = evaModifier;
+            dupedPoke.accModifier = accModifier;
+            dupedPoke.atkModifier = atkModifier;
+            dupedPoke.defModifier = defModifier;
+            dupedPoke.spaModifier = spaModifier;
+            dupedPoke.spdModifier = spdModifier;
+            dupedPoke.speModifier = speModifier;
+
+            dupedPoke.currentHealth = currentHealth;
+
+            return dupedPoke;
         }
     }
 

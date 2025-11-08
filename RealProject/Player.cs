@@ -10,23 +10,27 @@ using Microsoft.Xna.Framework.Input;
 
 namespace RealProject
 {
-    internal class Player
+    static class Player
     {
-        public Vector2 playerPos;
-        Texture2D playerSheet;
-        Texture2D playerTexture;
+        public static Vector2 playerPos;
+        static Texture2D playerSheet;
+        static Texture2D playerTexture;
 
-        public BoxCollider playerCollider;
+        public static BoxCollider playerCollider;
 
-        float playerWalkSpeed = 1.3f;
-        float playerSprintSpeed = 3f;
-        bool isSprinting = false;
+        static float playerWalkSpeed = 1.3f;
+        static float playerSprintSpeed = 3f;
+        static bool isSprinting = false;
 
-        string facing;
+        static string facing;
 
-        Vector2 playerMove = Vector2.Zero;
+        static Vector2 playerMove = Vector2.Zero;
 
-        AnimationManager animManager;
+        static AnimationManager animManager;
+
+        public static PokemonInstance[] pokemonParty = new PokemonInstance[6];
+
+        public static int currentPlayerEnvironmentIndex = 0;
 
         enum PlayerStates
         {
@@ -35,18 +39,15 @@ namespace RealProject
             Run
         }
 
-        PlayerStates playerState;
+        static PlayerStates playerState;
 
-        public Player(Texture2D playerTexture)
+        public static void Initialize(Texture2D playerTexture)
         {
-            this.playerSheet = playerTexture;
-        }
+            playerSheet = playerTexture;
 
-        public void Initialize()
-        {
             playerPos = Vector2.One * 66.625f;
 
-            playerCollider = new BoxCollider(new Vector2(0, 0.75f), false, new Vector2(0.5f, 0.5f));
+            playerCollider = new BoxCollider(new Vector2(-0.5f, 0.75f), false, new Vector2(0.5f, 0.5f));
 
             facing = "Down";
 
@@ -54,6 +55,10 @@ namespace RealProject
 
             List<Rectangle> bounds = new List<Rectangle>();
             Animation anim;
+
+            //----------------------
+
+            InitializePokemonParty();
 
             //----------------------
 
@@ -123,7 +128,16 @@ namespace RealProject
             animManager.Play("Walk_Down");
         }
 
-        public void Update()
+        static void InitializePokemonParty()
+        {
+            PokemonInstance testTreeko = DatabaseManager.GetBasePokemonData(46, 7, true);
+            testTreeko.RandomisePokemon([DatabaseManager.GetBasePokemonData(46, 1)]);
+            testTreeko.name = "Tester";
+
+            pokemonParty[0] = testTreeko;
+        }
+
+        public static void Update()
         {
             GetSprinting();
 
@@ -143,7 +157,7 @@ namespace RealProject
             playerTexture = animManager.GetFrameTexture();
         }
 
-        void SetPlayerAnimation()
+        static void SetPlayerAnimation()
         {
             string a = playerState.ToString();
 
@@ -162,7 +176,7 @@ namespace RealProject
             animManager.Play($"{a}_{facing}");
         }
 
-        void GetWASD()
+        static void GetWASD()
         {
             playerMove = Vector2.Zero;
 
@@ -182,7 +196,7 @@ namespace RealProject
                 playerState = PlayerStates.Idle;
         }
 
-        void GetSprinting()
+        static void GetSprinting()
         {
             if (InputManager.GetKey(Keys.LeftShift))
             {
@@ -196,7 +210,7 @@ namespace RealProject
             }
         }
 
-        void ExtraDebug()
+        static void ExtraDebug()
         {
             if (InputManager.GetMouseButtonDown(1))
                 playerPos = Global.ScreenToWorldPos(InputManager.GetMousePosition());
@@ -217,17 +231,17 @@ namespace RealProject
             }
         }
 
-        void MovePlayer()
+        static void MovePlayer()
         {
             float speed = isSprinting ? playerSprintSpeed : playerWalkSpeed;
 
-            playerPos.X += playerMove.X * speed * 0.25f * Global.pixelsPerUnit * Global.deltaTime;
-            playerPos.Y += playerMove.Y * speed * 0.25f * Global.pixelsPerUnit * Global.deltaTime;
+            playerPos.X += playerMove.X * speed * 0.25f * Global.pixelsPerUnit * 1920 / Global.screenWidth * Global.deltaTime;
+            playerPos.Y += playerMove.Y * speed * 0.25f * Global.pixelsPerUnit * 1920 / Global.screenWidth * Global.deltaTime;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public static void Draw(SpriteBatch spriteBatch)
         {
-            Vector2 playerPosToDraw = Global.WorldToScreenPos(new Vector2(playerPos.X, playerPos.Y));
+            Vector2 playerPosToDraw = Global.WorldToScreenPos(new Vector2(playerPos.X - 0.5f , playerPos.Y - 0.5f));
             spriteBatch.Draw(playerTexture,
                 new Rectangle((int)playerPosToDraw.X, (int)playerPosToDraw.Y, playerTexture.Width * Global.pixelsPerUnit, playerTexture.Height * Global.pixelsPerUnit),
                 Color.White);
@@ -235,9 +249,9 @@ namespace RealProject
             DrawCollider();
         }
 
-        void DrawCollider()
+        static void DrawCollider()
         {
-            Vector2 colliderPos = Global.WorldToScreenPos(new Vector2(playerPos.X + 0.25f, playerPos.Y + 0.75f));
+            Vector2 colliderPos = Global.WorldToScreenPos(new Vector2(playerPos.X - 0.35f, playerPos.Y + 0.75f));
 
             //_spriteBatch.Draw(tmManager., 
             //    new Rectangle((int)colliderPos.X, (int)colliderPos.Y, 8 * Global.pixelsPerUnit, 4 * Global.pixelsPerUnit),

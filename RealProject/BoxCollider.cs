@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace RealProject
 {
-    class BoxCollider : Collider
+    public class BoxCollider : Collider
     {
         public Vector2 colliderSize;
 
@@ -43,12 +43,12 @@ namespace RealProject
             {
                 if (left > colliderCentre.X - colliderSize.X / 2 && left < colliderCentre.X + colliderSize.X / 2)
                 {
-                    Debug.WriteLine("Intersecting");
+                    //Debug.WriteLine("Intersecting");
                     colliding = true;
                 }
                 else if (right > colliderCentre.X - colliderSize.X / 2 && right < colliderCentre.X + colliderSize.X / 2)
                 {
-                    Debug.WriteLine("Intersecting");
+                    //Debug.WriteLine("Intersecting");
                     colliding = true;
                 }
             }

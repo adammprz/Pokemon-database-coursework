@@ -1,21 +1,25 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using static RealProject.CoroutineManager;
 
 namespace RealProject
 {
     static class PokeBattleManager
     {
         static Dictionary<int, Vector2> battleBackgroundsDic;
+        static Dictionary<string, Func<bool, IEnumerator<object>>> moveActions = new Dictionary<string, Func<bool, IEnumerator<object>>>();
         static Texture2D battleBackgroundsSprite;
         static int currentArea = 0;
         public static PokeBattleInstance currentBattle;
@@ -34,7 +38,7 @@ namespace RealProject
 
         static BattleStates state;
 
-        public static void Initialiize(ContentManager content)
+        public static void Initialize(ContentManager content)
         {
             battleBackgroundsDic = new Dictionary<int, Vector2>();
 
@@ -53,6 +57,23 @@ namespace RealProject
             battleBackgroundsDic.Add(9, new Vector2(6, 411));
 
             battleBackgroundsSprite = content.Load<Texture2D>("battleBackgrounds");
+
+            currentBattle = new PokeBattleInstance(Player.pokemonParty, null, false, 0);
+            currentBattle.battleOver = true;
+
+            InitializeMoveActions();
+        }
+
+        static void InitializeMoveActions()
+        {
+            moveActions.Add($"Debuff_Atk1", (isPlayer) => ApplyStatChange(isPlayer, 0, -1));
+            moveActions.Add($"Debuff_Atk2", (isPlayer) => ApplyStatChange(isPlayer, 0, -2));
+            moveActions.Add($"Debuff_Atk3", (isPlayer) => ApplyStatChange(isPlayer, 0, -3));
+            moveActions.Add($"Buff_Atk1", (isPlayer) => ApplyStatChange(isPlayer, 0, 1));
+            moveActions.Add($"Buff_Atk2", (isPlayer) => ApplyStatChange(isPlayer, 0, 2));
+            moveActions.Add($"Buff_Atk3", (isPlayer) => ApplyStatChange(isPlayer, 0, 3));
+
+            moveActions.Add($"DrainEffect", (isPlayer) => AbsorbEffect(isPlayer));
         }
 
         public static void Update()
@@ -74,6 +95,7 @@ namespace RealProject
             state = BattleStates.BattleStart;
 
             GameStateManager.ChangeState(GameStateManager.GameState.Battle);
+            EnvironmentManager.ChangeInstancesEnable(false);
             CoroutineManager.Start(IntroSequence());
         }
 
@@ -111,7 +133,7 @@ namespace RealProject
             Player_SwitchInPokemon(0);
             UIManager.battleRects["Image_PlayerPokemon"].SetEnabled(true);
 
-            PlayerTurn();
+            PlayerTurnStart();
         }
 
         //static void DisplayUI()
@@ -123,12 +145,13 @@ namespace RealProject
         //    Player_SwitchInPokemon(0);
         //}
 
-        static void PlayerTurn()
+        static void PlayerTurnStart()
         {
             Global.currentTypeText = $"What  will  {currentBattle.playerTeam[0].name.ToUpper()}  do?";
             state = BattleStates.PlayerTurn;
             UIManager.battleRects["Image_BottomEmptyBar"].SetEnabled(false);
             UIManager.battleRects["Image_BattleMenu"].SetEnabled(true);
+            Debug.WriteLine($"Current state has a value of: {EnemyBattleAI.EvaluateBattleState(currentBattle)}.");
         }
 
         public static void ChangeHPText(string hpName, string sliderName)
@@ -195,12 +218,15 @@ namespace RealProject
                 yield return Global.StartTypewriter("Got  away  safely!", currentBattle.battleTextPos);
                 yield return CoroutineManager.Start(InputManager.GetButtonDown_Continue());
 
+                currentBattle.battleOver = true;
+
                 GameStateManager.ChangeState(GameStateManager.GameState.Overworld);
 
                 CoroutineManager.Start(UIManager.DoTransitionAnimation(() =>
                 {
                     UIManager.battleRects["Image_Background"].SetEnabled(false);
                     Global.currentTypeText = "";
+                    EnvironmentManager.ChangeInstancesEnable(true);
                 }));
             }
             else
@@ -210,41 +236,70 @@ namespace RealProject
 
                 CoroutineManager.Start(OnAttackChosen(-1));
             }
+
+            //currentBattle = null;
         }
 
-        static bool IsPlayerFaster()
+        public static bool IsPlayerFaster()
         {
             float enemyMultiplier = currentBattle.enemyTeam[currentBattle.enemyTeamIndex].statusCondition.primaryCondition == PrimaryStatusConditions.Paralysis ? 0.5f : 1;
             float playerMultiplier = currentBattle.playerTeam[currentBattle.playerTeamIndex].statusCondition.primaryCondition == PrimaryStatusConditions.Paralysis ? 0.5f : 1;
 
+            enemyMultiplier *= GetStageMultiplier(currentBattle.enemyTeam[currentBattle.enemyTeamIndex].speModifier);
+            playerMultiplier *= GetStageMultiplier(currentBattle.playerTeam[currentBattle.playerTeamIndex].speModifier);
+
             return currentBattle.enemyTeam[currentBattle.enemyTeamIndex].speStat*enemyMultiplier <= currentBattle.playerTeam[currentBattle.playerTeamIndex].speStat*playerMultiplier;
+        }
+
+        static int PriorityCheck(int playerPriority, int enemyPriority)
+        {
+            if (playerPriority == enemyPriority)
+                return 0;
+            else if (playerPriority > enemyPriority)
+                return 1;
+            else if (playerPriority < enemyPriority)
+                return 2;
+
+            return 0;
         }
 
         public static void ShowAttacks()
         {
             backAction = () => ShowOptions();
 
+            if (currentBattle.playerTeam[currentBattle.playerTeamIndex].moveset.Length > 0)
+            {
+                bool hasMove = false;
+
+                foreach (var v in currentBattle.playerTeam[currentBattle.playerTeamIndex].moveset)
+                {
+                    if (v.currentPP > 0)
+                        hasMove = true;
+                }
+
+                if (hasMove)
+                {
+                    UIManager.battleRects["Image_AttackMenu"].SetEnabled(true);
+                    Global.currentTypeText = "";
+                }
+                else
+                {
+                    UIManager.battleRects["Image_BottomEmptyBar"].SetEnabled(true);
+                    CoroutineManager.Start(OnAttackChosen(5));
+                }
+            }
+            else
+            {
+                UIManager.battleRects["Image_BottomEmptyBar"].SetEnabled(true);
+                CoroutineManager.Start(OnAttackChosen(5));
+            }
+
             UIManager.battleRects["Image_BattleMenu"].SetEnabled(false);
-            UIManager.battleRects["Image_AttackMenu"].SetEnabled(true);
-            Global.currentTypeText = "";
         }
 
         static MoveInstance EnemyChooseMove()
         {
-            MoveInstance moveChosen = null;
-
-            if (currentBattle.aiLevel == 0)
-            {
-                for (int i = 0; i < 10; i++)
-                {
-                    int rand = Global.random.Next(0, currentBattle.enemyTeam[currentBattle.enemyTeamIndex].moveset.Length);
-
-                    moveChosen = currentBattle.enemyTeam[currentBattle.enemyTeamIndex].moveset[rand];
-
-                    if (moveChosen.currentPP > 0)
-                        i = 100;
-                }
-            }
+            MoveInstance moveChosen = EnemyBattleAI.ChooseMove(currentBattle.aiLevel, currentBattle);
 
             if (moveChosen == null)
             {
@@ -252,33 +307,58 @@ namespace RealProject
                 moveChosen = DatabaseManager.GetBaseMoveInstance(2);
             }
 
+            Debug.WriteLine($"cab" + moveChosen.name);
+
             return moveChosen;
         }
 
-        public static int CalculateAttack(PokemonInstance attackingPoke, PokemonInstance defendingPoke, MoveInstance moveChosen)
+        public static int CalculateAttack(PokemonInstance attackingPoke, PokemonInstance defendingPoke, MoveInstance moveChosen, bool crit)
         {
             int damageOutput = 0;
             float multiplier = 1;
-            //Account for accuracy
 
             if (moveChosen.property == 0) // Status
             {
                 //implement
+                return 0;
             }
             else if (moveChosen.property == 1) // Physical
             {
                 multiplier = 1;
-                float burn = attackingPoke.statusCondition.primaryCondition == PrimaryStatusConditions.Burn ? 0.5f : 1;
+
+                if(attackingPoke.statusCondition != null)
+                    multiplier *= attackingPoke.statusCondition.primaryCondition == PrimaryStatusConditions.Burn ? 0.5f : 1;
 
                 multiplier *= DatabaseManager.GetTypeEffectiveness(moveChosen.typeID, defendingPoke.type1, defendingPoke.type2);
 
                 if (moveChosen.typeID == attackingPoke.type1 || moveChosen.typeID == attackingPoke.type2)
                     multiplier *= 1.5f;
 
+                int atkAfterAccounting = attackingPoke.atkStat;
+                int defAfterAccounting = defendingPoke.defStat;
                 //Account for crits
-                //Account for random between 1 and 0.85
+                Debug.WriteLine($"ahdashduahdihiahdsaudhi {atkAfterAccounting} {defAfterAccounting} {multiplier}");
 
-                damageOutput = (int)Math.Round(((2 * (float)attackingPoke.level / 5f + 2) * moveChosen.damage * attackingPoke.atkStat / defendingPoke.defStat / 50 + 2) * multiplier * burn, 0);
+                if (crit)
+                {
+                    multiplier *= 1.5f;
+
+                    //disregard attacker's negative stats and defender's positive stats
+
+                    atkAfterAccounting = (int)(atkAfterAccounting * MathHelper.Max(2, 2 + attackingPoke.atkModifier) / 2);
+                    defAfterAccounting = (int)(defAfterAccounting * 2 / MathHelper.Max(2, 2 - defendingPoke.defModifier));
+                }
+                else
+                {
+                    atkAfterAccounting = (int)(atkAfterAccounting * GetStageMultiplier(attackingPoke.atkModifier));
+                    defAfterAccounting = (int)(defAfterAccounting * GetStageMultiplier(defendingPoke.defModifier));
+                }
+
+                //Account for random
+
+                multiplier *= Global.random.Next(85, 101) / 100f;
+
+                damageOutput = (int)Math.Round(((2 * (float)attackingPoke.level / 5f + 2) * moveChosen.damage * atkAfterAccounting / defAfterAccounting / 50 + 2) * multiplier, 0);
 
                 Debug.WriteLine($"Should be doing: {damageOutput} physical damage to {defendingPoke.name}.");
             }
@@ -291,55 +371,57 @@ namespace RealProject
                 if (moveChosen.typeID == attackingPoke.type1 || moveChosen.typeID == attackingPoke.type2)
                     multiplier *= 1.5f;
 
+                int atkAfterAccounting = attackingPoke.spaStat;
+                int defAfterAccounting = defendingPoke.spdStat;
                 //Account for crits
-                //Account for random between 1 and 0.85
 
-                damageOutput = (int)Math.Round(((2 * (float)attackingPoke.level / 5f + 2) * moveChosen.damage * attackingPoke.spaStat / defendingPoke.spdStat / 50 + 2) * multiplier, 0);
+                if (crit)
+                {
+                    multiplier *= 1.5f;
+
+                    //disregard attacker's negative stats and defender's positive stats
+
+                    atkAfterAccounting = (int)(atkAfterAccounting * MathHelper.Max(2, 2 + attackingPoke.spaModifier) / 2);
+                    defAfterAccounting = (int)(defAfterAccounting * 2 / MathHelper.Max(2, 2 - defendingPoke.spdModifier));
+                }
+                else
+                {
+                    atkAfterAccounting = (int)(atkAfterAccounting * GetStageMultiplier(attackingPoke.spaModifier));
+                    defAfterAccounting = (int)(defAfterAccounting * GetStageMultiplier(defendingPoke.spdModifier));
+                }
+
+                //Account for random
+
+                multiplier *= Global.random.Next(85, 101) / 100f;
+
+                damageOutput = (int)Math.Round(((2 * (float)attackingPoke.level / 5f + 2) * moveChosen.damage * atkAfterAccounting / defAfterAccounting / 50 + 2) * multiplier, 0);
 
                 Debug.WriteLine($"Should be doing: {damageOutput} special damage to {defendingPoke.name}.");
             }
             else //Idk some type of fallback or something
-                return 0;
+                return 1;
 
-            return damageOutput;
+            return (int)MathF.Max(1, damageOutput);
+        }
+        static float GetStageMultiplier(int stage, bool baseStat = true)
+        {
+            float number = baseStat? 2 : 3;
+            if (stage >= 0)
+                return (number + stage) / number;
+            else
+                return number / (number - stage);
         }
 
         public static bool AccuracyCheck(int chanceToSucceed)
         {
             return (Global.random.Next(1, 101) <= chanceToSucceed);
-            //if (Global.random.Next(1, 101) <= chance)
-            //{
-            //    if (hitString != null)
-            //    {
-            //        yield return Global.StartTypewriter(hitString, currentBattle.battleTextPos);
-            //        yield return Global.battleSpeed;
-            //    }
-
-            //    if (hitAction != null)
-            //        hitAction();
-            //}
-            //else
-            //{
-            //    if (missString != null)
-            //    {
-            //        yield return Global.StartTypewriter(missString, currentBattle.battleTextPos);
-            //        yield return Global.battleSpeed;
-            //    }
-
-            //    if(isPlayer)
-            //        currentBattle.playerCanAct = false;
-            //    else
-            //        currentBattle.enemyCanAct = false;
-            //}
         }
 
         public static IEnumerator<object> OnAttackChosen(int attackIndex)
         {
             PokemonInstance currentPoke = currentBattle.playerTeam[currentBattle.playerTeamIndex];
             PokemonInstance enemyPoke = currentBattle.enemyTeam[currentBattle.enemyTeamIndex];
-            MoveInstance enemyMove = EnemyChooseMove();
-            float multiplier = 1;
-            int damage;
+
             backAction = null;
 
             currentBattle.playerCanAct = true;
@@ -351,79 +433,203 @@ namespace RealProject
             }
 
             MoveInstance moveChosen = null;
+            MoveInstance enemyMove = EnemyChooseMove();
 
             if (currentBattle.playerCanAct)
-                moveChosen = currentPoke.moveset[attackIndex];
-
-            if (IsPlayerFaster()) //Player faster or equal
             {
-                yield return CoroutineManager.Start(CheckProhibitingStatuses(currentPoke, enemyPoke, currentPoke.name.ToUpper(), true));
+                Debug.WriteLine("a");
+                if (attackIndex > 3)
+                    moveChosen = DatabaseManager.GetBaseMoveInstance(1);
+                else
+                    moveChosen = currentPoke.moveset[attackIndex];
+            }
 
-                if (currentBattle.playerCanAct == true)
-                {
-                    multiplier *= DatabaseManager.GetTypeEffectiveness(moveChosen.typeID, enemyPoke.type1, enemyPoke.type2);
-                    damage = CalculateAttack(currentPoke, enemyPoke, moveChosen);
+            bool playerMoveFirst;
 
-                    moveChosen.currentPP--;
+            int priorityC;
 
-                    yield return CoroutineManager.Start(AttackSequence(currentPoke, enemyPoke, moveChosen.name, damage, multiplier, true));
-                    yield return currentBattle.CheckDeath(enemyPoke, false);
-                }
+            if (moveChosen != null)
+                priorityC = PriorityCheck(moveChosen.priority, enemyMove.priority);
+            else
+                priorityC = 0;
 
-                yield return CoroutineManager.Start(CheckProhibitingStatuses(enemyPoke, currentPoke, $"{currentBattle.enemyPrefix}  {enemyPoke.name.ToUpper()}", false));
+            if (priorityC == 1)
+                playerMoveFirst = true;
+            else if (priorityC == 2)
+                playerMoveFirst = false;
+            else
+                playerMoveFirst = IsPlayerFaster();
 
-                if (currentBattle.enemyCanAct == true)
-                {
-                    damage = CalculateAttack(enemyPoke, currentPoke, enemyMove);
+            if (playerMoveFirst) //Player faster or equal
+            {
+                yield return CoroutineManager.Start(PlayerTurn(moveChosen));
 
-                    enemyMove.currentPP--;
+                if (currentBattle.battleOver) { yield break; }
 
-                    yield return CoroutineManager.Start(AttackSequence(enemyPoke, currentPoke, enemyMove.name, damage, multiplier, false));
-                    yield return currentBattle.CheckDeath(currentPoke, true);
-                }
+                yield return CoroutineManager.Start(EnemyTurn(enemyMove));
             }
             else //Enemy faster
             {
-                yield return CoroutineManager.Start(CheckProhibitingStatuses(enemyPoke, currentPoke, $"{currentBattle.enemyPrefix}  {enemyPoke.name.ToUpper()}", false));
+                yield return CoroutineManager.Start(EnemyTurn(enemyMove));
 
-                if (currentBattle.enemyCanAct == true)
-                {
-                    multiplier *= DatabaseManager.GetTypeEffectiveness(enemyMove.typeID, currentPoke.type1, currentPoke.type2);
-                    damage = CalculateAttack(enemyPoke, currentPoke, enemyMove);
+                if(currentBattle.battleOver) { yield break; }
 
-                    enemyMove.currentPP--;
-
-                    yield return CoroutineManager.Start(AttackSequence(enemyPoke, currentPoke, enemyMove.name, damage, multiplier, false));
-                    yield return currentBattle.CheckDeath(currentPoke, true);
-                }
-
-                yield return CoroutineManager.Start(CheckProhibitingStatuses(currentPoke, enemyPoke, currentPoke.name.ToUpper(), true));
-
-                if (currentBattle.playerCanAct == true)
-                {
-                    multiplier = 1;
-                    multiplier *= DatabaseManager.GetTypeEffectiveness(moveChosen.typeID, enemyPoke.type1, enemyPoke.type2);
-                    damage = CalculateAttack(currentPoke, enemyPoke, moveChosen);
-
-                    moveChosen.currentPP--;
-
-                    yield return CoroutineManager.Start(AttackSequence(currentPoke, enemyPoke, moveChosen.name, damage, multiplier, true));
-                    yield return currentBattle.CheckDeath(enemyPoke, false);
-                }
+                yield return CoroutineManager.Start(PlayerTurn(moveChosen));
             }
 
             //Do status stuff
             CheckDamagingStatuses(enemyPoke, $"{currentBattle.enemyPrefix}  {enemyPoke.name.ToUpper()}", false);
             yield return currentBattle.CheckDeath(enemyPoke, false);
 
+            if (currentBattle.battleOver) { yield break; }
+
             CheckDamagingStatuses(currentPoke, currentPoke.name.ToUpper(), true);
             yield return currentBattle.CheckDeath(currentPoke, true);
 
-            PlayerTurn();
+            if (currentBattle.battleOver) { yield break; }
+
+            PlayerTurnStart();
+        }
+
+        static IEnumerator<object> PlayerTurn(MoveInstance moveChosen)
+        {
+            PokemonInstance currentPoke = currentBattle.playerTeam[currentBattle.playerTeamIndex];
+            PokemonInstance enemyPoke = currentBattle.enemyTeam[currentBattle.enemyTeamIndex];
+
+            float multiplier = 1;
+            int damage = 1;
+
+            yield return CoroutineManager.Start(CheckProhibitingStatuses(currentPoke, enemyPoke, currentPoke.name.ToUpper(), true));
+
+            if (currentBattle.playerCanAct == true)
+            {
+                multiplier *= DatabaseManager.GetTypeEffectiveness(moveChosen.typeID, enemyPoke.type1, enemyPoke.type2);
+                bool crit = CheckCritical();
+
+                damage = CalculateAttack(currentPoke, enemyPoke, moveChosen, crit);
+                currentBattle.damageJustCalculated = MathHelper.Clamp(damage, 0, currentPoke.currentHealth);
+
+                float attackerAccuracyMultiplier = GetStageMultiplier(currentPoke.accModifier, false);
+                float defenderEvasionMultiplier = GetStageMultiplier(enemyPoke.evaModifier, false);
+
+                yield return Global.StartTypewriter($"{currentPoke.name.ToUpper()}  used  {moveChosen.name.ToUpper()}!", currentBattle.battleTextPos);
+
+                yield return Global.battleSpeed;
+
+                if (AccuracyCheck((int)(moveChosen.accuracy * attackerAccuracyMultiplier / defenderEvasionMultiplier)) || moveChosen.accuracy == -1)
+                {
+                    moveChosen.currentPP--;
+
+                    yield return CoroutineManager.Start(AttackSequence(currentPoke, enemyPoke, moveChosen.name, damage, moveChosen.accuracy, multiplier, true));
+
+                    if (crit)
+                    {
+                        yield return Global.StartTypewriter("It's  a  critical  hit!", currentBattle.battleTextPos);
+                        yield return Global.battleSpeed;
+                    }
+
+                    if (moveActions.ContainsKey(moveChosen.effectKey))
+                    {
+                        yield return CoroutineManager.Start(moveActions[moveChosen.effectKey](moveChosen.affectsUser));
+                        yield return Global.battleSpeed;
+                    }
+
+                    yield return currentBattle.CheckDeath(enemyPoke, false);
+                }
+                else
+                {
+                    yield return Global.StartTypewriter("The  attack  missed!", currentBattle.battleTextPos);
+
+                    yield return Global.battleSpeed;
+                }
+            }
+        }
+
+        static IEnumerator<object> EnemyTurn(MoveInstance enemyMove)
+        {
+            PokemonInstance currentPoke = currentBattle.playerTeam[currentBattle.playerTeamIndex];
+            PokemonInstance enemyPoke = currentBattle.enemyTeam[currentBattle.enemyTeamIndex];
+
+            float multiplier = 1;
+            int damage = 1;
+
+            yield return CoroutineManager.Start(CheckProhibitingStatuses(enemyPoke, currentPoke, $"{currentBattle.enemyPrefix}  {enemyPoke.name.ToUpper()}", false));
+
+            if (currentBattle.enemyCanAct == true)
+            {
+                multiplier *= DatabaseManager.GetTypeEffectiveness(enemyMove.typeID, currentPoke.type1, currentPoke.type2);
+                bool crit = CheckCritical();
+
+                damage = CalculateAttack(enemyPoke, currentPoke, enemyMove, crit);
+                currentBattle.damageJustCalculated = MathHelper.Clamp(damage, 0, enemyPoke.currentHealth);
+
+                float attackerAccuracyMultiplier = GetStageMultiplier(enemyPoke.accModifier, false);
+                float defenderEvasionMultiplier = GetStageMultiplier(currentPoke.evaModifier, false);
+
+                yield return Global.StartTypewriter($"{currentBattle.enemyPrefix}  {enemyPoke.name.ToUpper()}  used  {enemyMove.name.ToUpper()}!", currentBattle.battleTextPos);
+
+                yield return Global.battleSpeed;
+
+                if (AccuracyCheck((int)(enemyMove.accuracy * attackerAccuracyMultiplier / defenderEvasionMultiplier)) || enemyMove.accuracy == -1)
+                {
+                    enemyMove.currentPP--;
+
+                    yield return CoroutineManager.Start(AttackSequence(enemyPoke, currentPoke, enemyMove.name, damage, enemyMove.accuracy, multiplier, false));
+
+                    if (crit)
+                    {
+                        yield return Global.StartTypewriter("It's  a  critical  hit!", currentBattle.battleTextPos);
+                        yield return Global.battleSpeed;
+                    }
+
+                    if (moveActions.ContainsKey(enemyMove.effectKey))
+                    {
+                        yield return CoroutineManager.Start(moveActions[enemyMove.effectKey](!enemyMove.affectsUser));
+                        yield return Global.battleSpeed;
+                    }
+
+                    yield return currentBattle.CheckDeath(currentPoke, true);
+                }
+                else
+                {
+                    yield return Global.StartTypewriter("The  attack  missed!", currentBattle.battleTextPos);
+
+                    yield return Global.battleSpeed;
+                }
+            }
+        }
+
+        static bool CheckCritical()
+        {
+            int critStage = 0; // Check for high crit moves or item
+            int critChance = 1;
+
+            switch(critStage)
+            {
+                case 0:
+                    critChance = 24;
+                    break;
+                case 1:
+                    critChance = 8;
+                    break;
+                case 3:
+                    critChance = 2;
+                    break;
+            }
+
+            bool crit = Global.random.Next(1, critChance + 1) == 1;
+
+            return crit;
         }
 
         public static IEnumerator<object> CheckProhibitingStatuses(PokemonInstance poke, PokemonInstance defendingPoke, string displayName, bool isPlayer)
         {
+            UIManager.battleRects["Image_BottomEmptyBar"].SetEnabled(true);
+            UIManager.battleRects["Image_AttackMenu"].SetEnabled(false);
+
+            if (poke.statusCondition == null)
+                yield break;
+
             if (poke.statusCondition.primaryCondition == PrimaryStatusConditions.Freeze) // Frozen
             {
                 yield return Global.StartTypewriter($"{displayName}  is  frozen...", currentBattle.battleTextPos);
@@ -432,7 +638,7 @@ namespace RealProject
                 if(AccuracyCheck(20))
                 {
                     yield return Global.StartTypewriter($"{displayName}  broke  the  ice!", currentBattle.battleTextPos);
-                    poke.statusCondition = null;
+                    poke.statusCondition = new StatusEffects(PrimaryStatusConditions.None);
                 }
                 else
                 {
@@ -441,6 +647,8 @@ namespace RealProject
                     if (isPlayer) currentBattle.playerCanAct = false;
                     else currentBattle.enemyCanAct = false;
                 }
+
+                yield return Global.battleSpeed;
             }
             else if (poke.statusCondition.primaryCondition == PrimaryStatusConditions.Paralysis) // Paralyzed
             {
@@ -454,7 +662,7 @@ namespace RealProject
                     if (isPlayer) currentBattle.playerCanAct = false;
                     else currentBattle.enemyCanAct = false;
 
-                    poke.statusCondition = null;
+                    yield return Global.battleSpeed;
                 }
             }
             else if (poke.statusCondition.primaryCondition == PrimaryStatusConditions.Sleep) // Sleep
@@ -490,8 +698,8 @@ namespace RealProject
                             yield return Global.StartTypewriter($"It hurt itself in its confusion!", currentBattle.battleTextPos);
                             yield return Global.battleSpeed;
 
-                            MoveInstance confuseMove = new MoveInstance(0, "", 40, 100, 19, 100, 1);
-                            yield return currentBattle.TakeDamage(!isPlayer, CalculateAttack(poke, defendingPoke, confuseMove));
+                            MoveInstance confuseMove = new MoveInstance(0, "", 40, -1, 19, 100, 1, 0);
+                            yield return currentBattle.TakeDamage(!isPlayer, CalculateAttack(poke, defendingPoke, confuseMove, false));
                             yield return currentBattle.CheckDeath(poke, isPlayer);
 
                             if (isPlayer) currentBattle.playerCanAct = false;
@@ -542,21 +750,11 @@ namespace RealProject
             return null;
         }
 
-        static IEnumerator<object> AttackSequence(PokemonInstance attackingPoke, PokemonInstance defendingPoke, string attackName, int damage, float effective, bool playerAttack)
+        static IEnumerator<object> AttackSequence(PokemonInstance attackingPoke, PokemonInstance defendingPoke, string attackName, int damage, int accuracy, float effective, bool playerAttack)
         {
-            UIManager.battleRects["Image_BottomEmptyBar"].SetEnabled(true);
-            UIManager.battleRects["Image_AttackMenu"].SetEnabled(false);
-
             state = BattleStates.DoingTurn;
 
-            if(playerAttack)
-                yield return Global.StartTypewriter($"{attackingPoke.name.ToUpper()}  used  {attackName.ToUpper()}!", currentBattle.battleTextPos);
-            else
-                yield return Global.StartTypewriter($"{currentBattle.enemyPrefix}  {attackingPoke.name.ToUpper()}  used  {attackName.ToUpper()}!", currentBattle.battleTextPos);
-
             yield return Global.battleSpeed;
-
-            //Attack animations and stuff
 
             yield return currentBattle.TakeDamage(playerAttack, damage);
 
@@ -573,6 +771,144 @@ namespace RealProject
             if (effective != 1) yield return Global.battleSpeed;
 
             state = BattleStates.PlayerTurn;
+        }
+
+        public static IEnumerator<object> ApplyStatChange(bool isPlayer, int stat, int amount)
+        {
+            string statText = "";
+            string amountText = "";
+            PokemonInstance affectedPoke;
+            string displayName;
+
+            int preChange = 10;
+            int postChange = 11;
+
+            if (isPlayer)
+            {
+                affectedPoke = currentBattle.playerTeam[currentBattle.playerTeamIndex];
+                displayName = affectedPoke.name.ToUpper();
+            }
+            else
+            {
+                affectedPoke = currentBattle.enemyTeam[currentBattle.enemyTeamIndex];
+                displayName = $"{currentBattle.enemyPrefix}  {affectedPoke.name.ToUpper()}";
+            }
+
+            switch (stat)
+            {
+                case 0: // ATTACK
+                    statText = "attack";
+                    preChange = affectedPoke.atkModifier;
+                    affectedPoke.atkModifier = MathHelper.Clamp(affectedPoke.atkModifier + amount, -6, 6);
+                    postChange = affectedPoke.atkModifier;
+                    break;
+                case 1: // DEFENSE
+                    statText = "defense";
+                    preChange = affectedPoke.defModifier;
+                    affectedPoke.defModifier = MathHelper.Clamp(affectedPoke.defModifier + amount, -6, 6);
+                    postChange = affectedPoke.defModifier;
+                    break;
+                case 2: // SPECIAL ATTACK
+                    statText = "special  attack";
+                    preChange = affectedPoke.spaModifier;
+                    affectedPoke.spaModifier = MathHelper.Clamp(affectedPoke.spaModifier + amount, -6, 6);
+                    postChange = affectedPoke.spaModifier;
+                    break;
+                case 3: // SPECIAL DEFENSE
+                    statText = "special  defense";
+                    preChange = affectedPoke.spdModifier;
+                    affectedPoke.spdModifier = MathHelper.Clamp(affectedPoke.spdModifier + amount, -6, 6);
+                    postChange = affectedPoke.spdModifier;
+                    break;
+                case 4: // SPEED
+                    statText = "speed";
+                    preChange = affectedPoke.speModifier;
+                    affectedPoke.speModifier = MathHelper.Clamp(affectedPoke.speModifier + amount, -6, 6);
+                    postChange = affectedPoke.speModifier;
+                    break;
+                case 5: // ACCURACY
+                    statText = "accuracy";
+                    preChange = affectedPoke.accModifier;
+                    affectedPoke.accModifier = MathHelper.Clamp(affectedPoke.accModifier + amount, -6, 6);
+                    postChange = affectedPoke.accModifier;
+                    break;
+                case 6: // EVASION
+                    statText = "evasion";
+                    preChange = affectedPoke.evaModifier;
+                    affectedPoke.evaModifier = MathHelper.Clamp(affectedPoke.evaModifier + amount, -6, 6);
+                    postChange = affectedPoke.evaModifier;
+                    break;
+            }
+
+            switch (amount)
+            {
+                case -3:
+                    amountText = "severely";
+                    break;
+                case -2:
+                    amountText = "harshly";
+                    break;
+                case 2:
+                    amountText = "  sharply";
+                    break;
+                case 3:
+                    amountText = "  drastically";
+                    break;
+            }
+
+            if (!currentBattle.simulation)
+            {
+
+                if (preChange == postChange)
+                {
+                    if (amount > 0)
+                        yield return Global.StartTypewriter($"{displayName}'s  {statText}  can't  go  any  higher!", currentBattle.battleTextPos);
+                    else
+                        yield return Global.StartTypewriter($"{displayName}'s  {statText}  can't  go  any  lower!", currentBattle.battleTextPos);
+                }
+                else if (amount > 0)
+                    yield return Global.StartTypewriter($"{displayName}'s  {statText}  rose  {amountText}!", currentBattle.battleTextPos);
+                else
+                    yield return Global.StartTypewriter($"{displayName}'s  {statText}  {amountText}  fell!", currentBattle.battleTextPos);
+            }
+        }
+
+        static IEnumerator<object> HealEffect(bool isPlayer, int amount)
+        {
+            PokemonInstance poke = isPlayer ? currentBattle.playerTeam[currentBattle.playerTeamIndex] : currentBattle.enemyTeam[currentBattle.enemyTeamIndex];
+
+            if (poke.currentHealth < poke.hpStat)
+            {
+                amount = (int)MathHelper.Clamp(amount, 1, int.MaxValue);
+                if (!currentBattle.simulation)
+                {
+                    string text = isPlayer ? poke.name : $"{currentBattle.enemyPrefix}  {poke.name}";
+                    yield return Global.StartTypewriter($"{text}  healed  {amount}  HP!", currentBattle.battleTextPos);
+
+                    yield return Global.battleSpeed;
+                }
+
+                yield return currentBattle.TakeDamage(!isPlayer, -amount);
+            }
+            else
+            {
+                yield return Global.StartTypewriter("It  had  no  effect!", currentBattle.battleTextPos);
+            }
+        }
+
+        static IEnumerator<object> AbsorbEffect(bool isPlayer)
+        {
+            PokemonInstance attackingInstance = isPlayer ? currentBattle.playerTeam[currentBattle.playerTeamIndex] : currentBattle.enemyTeam[currentBattle.enemyTeamIndex];
+
+            if (attackingInstance.currentHealth != attackingInstance.hpStat)
+            {
+                if (!currentBattle.simulation)
+                {
+                    yield return Global.battleSpeed;
+                    yield return CoroutineManager.Start(HealEffect(isPlayer, currentBattle.damageJustCalculated / 2)); // fix calculation
+                } else
+                    CoroutineManager.Start(HealEffect(isPlayer, currentBattle.damageJustCalculated / 2));
+            }
         }
 
         public static IEnumerator<object> FaintSequence(PokemonInstance faintedPoke, bool isPlayer)
@@ -594,6 +930,8 @@ namespace RealProject
 
                     break;
                 case 2: // Wild pokemon faints
+                    currentBattle.battleOver = true;
+
                     yield return Global.StartTypewriter($"{currentBattle.enemyPrefix}  {faintedPoke.name.ToUpper()}  fainted!", currentBattle.battleTextPos);
 
                     //Do animation and cry
@@ -658,6 +996,7 @@ namespace RealProject
                         Global.currentTypeText = "";
                     }));
 
+                    EnvironmentManager.ChangeInstancesEnable(true);
 
 
                     break;
@@ -666,6 +1005,8 @@ namespace RealProject
 
                     break;
             }
+
+            //currentBattle = null;
         }
 
         public static void Player_SwitchInPokemon(int index)
@@ -720,7 +1061,7 @@ namespace RealProject
             currentBattle.enemyTeamIndex = index;
             currentBattle.enemyTeam[index].volatileStatuses = new List<StatusEffects>();
 
-            currentBattle.enemyTeam[index].volatileStatuses.Add(new StatusEffects(Global.random.Next(2, 6), VolatileStatusConditions.Confusion));
+            //currentBattle.enemyTeam[index].volatileStatuses.Add(new StatusEffects(Global.random.Next(2, 6), VolatileStatusConditions.Confusion));
 
             ((UISlider)UIManager.battleRects["Slider_EnemyHealth"]).maxValue = currentBattle.enemyTeam[index].hpStat;
             ((UISlider)UIManager.battleRects["Slider_EnemyHealth"]).SetValue(currentBattle.enemyTeam[index].currentHealth);

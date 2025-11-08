@@ -30,7 +30,12 @@ namespace RealProject
 
         public string enemyPrefix;
 
-        public Vector2 battleTextPos = new Vector2(11 * Global.pixelsPerUnit, 141*Global.pixelsPerUnit);
+        public Vector2 battleTextPos = new Vector2(11 * Global.pixelsPerUnit, 141 * Global.pixelsPerUnit);
+
+        public int damageJustCalculated;
+        public bool simulation = false;
+
+        public bool battleOver;
 
         public PokeBattleInstance(PokemonInstance[] plTeam, PokemonInstance[] enTeam, bool wildBattle, int aiLevel) 
         {
@@ -39,6 +44,8 @@ namespace RealProject
 
             playerTeamIndex = 0;
             enemyTeamIndex = 0;
+
+            battleOver = false;
 
             isWildBattle = wildBattle;
             this.aiLevel = aiLevel;
@@ -56,18 +63,28 @@ namespace RealProject
                 enemyTeam[enemyTeamIndex].currentHealth -= damage;
                 enemyTeam[enemyTeamIndex].currentHealth = MathHelper.Clamp(enemyTeam[enemyTeamIndex].currentHealth, 0, enemyTeam[enemyTeamIndex].hpStat);
 
-                isAnimating = true;
-                return CoroutineManager.Start(AnimateSlider((UISlider)UIManager.battleRects["Slider_EnemyHealth"], enemyTeam[enemyTeamIndex].currentHealth));
-                //((UISlider)UIManager.battleRects["Slider_EnemyHealth"]).SetValue(enemyTeam[enemyTeamIndex].currentHealth);
+                if (!simulation)
+                {
+                    isAnimating = true;
+                    return CoroutineManager.Start(AnimateSlider((UISlider)UIManager.battleRects["Slider_EnemyHealth"], enemyTeam[enemyTeamIndex].currentHealth));
+                    //((UISlider)UIManager.battleRects["Slider_EnemyHealth"]).SetValue(enemyTeam[enemyTeamIndex].currentHealth);
+                }
+
+                return null;
             }
             else
             {
                 playerTeam[playerTeamIndex].currentHealth -= damage;
                 playerTeam[playerTeamIndex].currentHealth = MathHelper.Clamp(playerTeam[playerTeamIndex].currentHealth, 0, playerTeam[playerTeamIndex].hpStat);
 
-                isAnimating = true;
-                return CoroutineManager.Start(AnimateSlider((UISlider)UIManager.battleRects["Slider_PlayerHealth"], playerTeam[playerTeamIndex].currentHealth));
-                //((UISlider)UIManager.battleRects["Slider_PlayerHealth"]).SetValue(playerTeam[playerTeamIndex].currentHealth);
+                if (!simulation)
+                {
+                    isAnimating = true;
+                    return CoroutineManager.Start(AnimateSlider((UISlider)UIManager.battleRects["Slider_PlayerHealth"], playerTeam[playerTeamIndex].currentHealth));
+                    //((UISlider)UIManager.battleRects["Slider_PlayerHealth"]).SetValue(playerTeam[playerTeamIndex].currentHealth);
+                }
+
+                return null;
             }
         }
 

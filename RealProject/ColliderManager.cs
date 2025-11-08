@@ -10,28 +10,23 @@ using System.Diagnostics;
 
 namespace RealProject
 {
-    internal class ColliderManager
+    static class ColliderManager
     {
-        public char[,] collisionMap;
-        public Dictionary<char, Collider> colliderDictionary = new Dictionary<char, Collider>();
+        public static char[,] collisionMap;
+        public static Dictionary<char, Collider> colliderDictionary = new Dictionary<char, Collider>();
 
-        Texture2D mapPNG;
-        Player player;
-        SpriteFont font;
+        static Texture2D mapPNG;
+        static SpriteFont font;
 
-        public ColliderManager(Texture2D texture, Player player, SpriteFont font) 
+        public static void Initialize(Texture2D texture, SpriteFont fnt)
         {
             mapPNG = texture;
-            this.player = player;
-            this.font = font;
-        }
+            font = fnt;
 
-        public void Initialize()
-        {
             InitializeColliders();
             GetTileMapFromImage(mapPNG);
         }
-        void InitializeColliders()
+        static void InitializeColliders()
         {
             colliderDictionary.Add('x', new BoxCollider(Vector2.Zero, false, Vector2.One));
             colliderDictionary.Add('b', new BoxCollider(new Vector2(0, 0.2f), false, new Vector2(1, 0.5f)));
@@ -41,7 +36,7 @@ namespace RealProject
             //colliderDictionary.Add('L', new RightTriangleCollider(Vector2.Zero, false, Vector2.One, 1));
         }
 
-        void GetTileMapFromImage(Texture2D mapImg)
+        static void GetTileMapFromImage(Texture2D mapImg)
         {
             int width = mapImg.Width;
             int height = mapImg.Height;
@@ -65,24 +60,24 @@ namespace RealProject
             }
         }
 
-        public void OverrideColliderMap(Char c, int x, int y)
+        public static void OverrideColliderMap(Char c, int x, int y)
         {
             collisionMap[y, x] = c;
         }
 
-        public void Update()
+        public static void Update()
         {
             if (GameStateManager.gameState != GameStateManager.GameState.Overworld) return;
 
             CheckPlayerCollision();
         }
 
-        void CheckPlayerCollision()
+        static void CheckPlayerCollision()
         {
             char[,] colMap = collisionMap;
-            int x = (int)MathF.Round(player.playerPos.X);
+            int x = (int)MathF.Round(Player.playerPos.X);
             x = (int)Math.Clamp(x, 1, colMap.GetLength(0) - 2);
-            int y = (int)MathF.Round(player.playerPos.Y);
+            int y = (int)MathF.Round(Player.playerPos.Y);
             y = (int)Math.Clamp(y, 1, colMap.GetLength(1) - 2);
 
             for (int i = -1; i < 2; i++)
@@ -94,25 +89,51 @@ namespace RealProject
                         Collider collider = colliderDictionary[colMap[y + j, x + i]];
                         Vector2 tileCenter = new Vector2(x + i, y + j);
 
-                        bool intersecting = collider.CheckPlayerCollision(tileCenter, player.playerPos, player.playerCollider.colliderSize, player.playerCollider.colliderOffset);
+                        bool intersecting = collider.CheckPlayerCollision(tileCenter, Player.playerPos, Player.playerCollider.colliderSize, Player.playerCollider.colliderOffset);
 
                         if (intersecting)
                         {
-                            Debug.WriteLine(player.playerPos);
-                            player.playerPos = collider.ResolveCollision(tileCenter, player.playerPos, player.playerCollider.colliderSize, player.playerCollider.colliderOffset);
+                            Debug.WriteLine(Player.playerPos);
+
+                            if (collider.isTrigger)
+                            {
+                                if (!collider.colliding && intersecting)
+                                    collider.OnTriggerEnter();
+                            } 
+                            else
+                                Player.playerPos = collider.ResolveCollision(tileCenter, Player.playerPos, Player.playerCollider.colliderSize, Player.playerCollider.colliderOffset);
                         }
+
+                        collider.colliding = intersecting;
                     }
                 }
             }
+
+            foreach(OverworldPokemonInstance p in EnvironmentManager.pokemonInstances)
+            {
+                bool intersecting = p.collider.CheckPlayerCollision(p.position, Player.playerPos, Player.playerCollider.colliderSize, Player.playerCollider.colliderOffset);
+
+                if (intersecting)
+                {
+                    if (p.collider.isTrigger)
+                    {
+                        if (!p.collider.colliding && intersecting)
+                            p.collider.OnTriggerEnter();
+                    } else
+                        Player.playerPos = p.collider.ResolveCollision(p.position, Player.playerPos, Player.playerCollider.colliderSize, Player.playerCollider.colliderOffset);
+                }
+
+                p.collider.colliding = intersecting;
+            }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public static void Draw(SpriteBatch spriteBatch)
         {
-            int x = (int)MathF.Round(player.playerPos.X);
+            int x = (int)MathF.Round(Player.playerPos.X);
             x = (int)Math.Clamp(x, 1, collisionMap.GetLength(0) - 2);
-            int y = (int)MathF.Round(player.playerPos.Y);
+            int y = (int)MathF.Round(Player.playerPos.Y);
             y = (int)Math.Clamp(y, 1, collisionMap.GetLength(1) - 2);
-            spriteBatch.DrawString(font, $"{x}, {y}, {player.playerPos + player.playerCollider.colliderOffset}", Vector2.Zero, Color.Black, 0f, Vector2.Zero, 4, SpriteEffects.None, 0);
+            spriteBatch.DrawString(font, $"{x}, {y}, {Player.playerPos + Player.playerCollider.colliderOffset}", Vector2.Zero, Color.Black, 0f, Vector2.Zero, 4, SpriteEffects.None, 0);
         }
     }
 }

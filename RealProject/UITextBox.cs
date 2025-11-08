@@ -65,9 +65,9 @@ namespace RealProject
 
             if (doDropShadow)
             {
-                Vector2 shadowOffset1 = new Vector2(6, 0);
-                Vector2 shadowOffset2 = new Vector2(6, 6);
-                Vector2 shadowOffset3 = new Vector2(0, 6);
+                Vector2 shadowOffset1 = new Vector2(Global.pixelsPerUnit, 0);
+                Vector2 shadowOffset2 = new Vector2(Global.pixelsPerUnit, Global.pixelsPerUnit);
+                Vector2 shadowOffset3 = new Vector2(0, Global.pixelsPerUnit);
 
                 spriteBatch.DrawString(Global.pokeFont, text, pos + shadowOffset1, dropShadowColor, 0, origin, Global.pixelsPerUnit, SpriteEffects.None, 0);
                 spriteBatch.DrawString(Global.pokeFont, text, pos + shadowOffset2, dropShadowColor, 0, origin, Global.pixelsPerUnit, SpriteEffects.None, 0);

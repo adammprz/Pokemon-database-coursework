@@ -15,12 +15,13 @@ namespace RealProject
 {
     public static class Global
     {
-        public static int pixelsPerUnit = 6;
         public static Random random = new Random();
 
-        public static int screenWidth = 1920;
-        public static int screenHeight = 1080;
+        public static int screenWidth = 1920/2;
+        public static int screenHeight = 1080/2;
         public static Vector2 screenCentre;
+
+        public static int pixelsPerUnit = 6*screenWidth/1920;
 
         public static Vector2 camPos;
         static float camSpeed = 12f;
@@ -73,7 +74,7 @@ namespace RealProject
             //if (GameStateManager.gameState != GameStateManager.GameState.Overworld) return;
 
             Vector2 targetCamPos = Vector2.Lerp(playerPos, Global.ScreenToWorldPos(mousePos), 0.2f);
-            camPos = Vector2.Lerp(camPos, targetCamPos, (float)gameTime.ElapsedGameTime.TotalSeconds * camSpeed);
+            camPos = Vector2.Lerp(camPos, targetCamPos, deltaTime * camSpeed);
         }
 
         public static Texture2D CropTexture(Texture2D sourceTexture, Rectangle sourceRect)
@@ -102,7 +103,7 @@ namespace RealProject
             return currentTypewriter;
         }
 
-        public static IEnumerator<object> DoTypewriter(string text, Vector2 pos)
+        static IEnumerator<object> DoTypewriter(string text, Vector2 pos)
         {
             StringBuilder s = new StringBuilder();
             float speed = textSpeed;
@@ -118,7 +119,7 @@ namespace RealProject
 
                 s.Append(text[i]);
                 currentTypeText = s.ToString();
-                Debug.WriteLine(currentTypeText);
+                //Debug.WriteLine(currentTypeText);
 
                 yield return speed;
             }

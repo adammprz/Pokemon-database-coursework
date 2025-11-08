@@ -7,24 +7,8 @@
       "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\pokebattlemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\pokemoninstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\pokemoninstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\databasemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\databasemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\pokebattleinstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\pokebattleinstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,16 +19,44 @@
       "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\coroutinemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\pokemoninstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\pokemoninstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\environmentmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\environmentmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\overworldpokemoninstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\overworldpokemoninstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\collider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\collider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\boxcollider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\boxcollider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\uibutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\uibutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\collidermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\collidermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\enemybattleai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\enemybattleai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\pokebattleinstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\pokebattleinstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\uislider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -55,36 +67,20 @@
       "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\uitextbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\uirect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\uirect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\tilemapmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\tilemapmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\collidermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\collidermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\gamestatemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\gamestatemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\environmentmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\environmentmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\animation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\animation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\animationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\animationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|c:\\users\\adam\\onedrive - altus education partnership\\adam prz - nea comp sci\\project\\realproject\\realproject\\uibutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02EDFE03-F0BC-4082-A1FD-BC6A2EB1A064}|RealProject\\RealProject.csproj|solutionrelative:realproject\\uibutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -94,7 +90,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Bookmark",
@@ -102,223 +98,76 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Game1.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Game1.cs",
-              "RelativeDocumentMoniker": "RealProject\\Game1.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Game1.cs",
-              "RelativeToolTip": "RealProject\\Game1.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAIwG0AAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T12:47:32.386Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "UIManager.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UIManager.cs",
-              "RelativeDocumentMoniker": "RealProject\\UIManager.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UIManager.cs",
-              "RelativeToolTip": "RealProject\\UIManager.cs",
-              "ViewState": "AgIAAKsAAAAAAAAAAAAAwLYAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T20:59:08.744Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Global.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Global.cs",
-              "RelativeDocumentMoniker": "RealProject\\Global.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Global.cs",
-              "RelativeToolTip": "RealProject\\Global.cs",
-              "ViewState": "AgIAAGEAAAAAAAAAAAAmwHAAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T12:38:16.042Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "AnimationManager.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\AnimationManager.cs",
-              "RelativeDocumentMoniker": "RealProject\\AnimationManager.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\AnimationManager.cs",
-              "RelativeToolTip": "RealProject\\AnimationManager.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAowCIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T12:01:34.251Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Animation.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Animation.cs",
-              "RelativeDocumentMoniker": "RealProject\\Animation.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Animation.cs",
-              "RelativeToolTip": "RealProject\\Animation.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T11:59:04.763Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
               "Title": "EnvironmentManager.cs",
               "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\EnvironmentManager.cs",
               "RelativeDocumentMoniker": "RealProject\\EnvironmentManager.cs",
               "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\EnvironmentManager.cs",
               "RelativeToolTip": "RealProject\\EnvironmentManager.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAIwCEAAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAcwFQAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-06T17:17:23.523Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T16:52:02.146Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "GameStateManager.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\GameStateManager.cs",
-              "RelativeDocumentMoniker": "RealProject\\GameStateManager.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\GameStateManager.cs",
-              "RelativeToolTip": "RealProject\\GameStateManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T18:48:42.997Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "ColliderManager.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\ColliderManager.cs",
-              "RelativeDocumentMoniker": "RealProject\\ColliderManager.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\ColliderManager.cs",
-              "RelativeToolTip": "RealProject\\ColliderManager.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowHIAAAC2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T14:56:00.011Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "DatabaseManager.cs",
               "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\DatabaseManager.cs",
               "RelativeDocumentMoniker": "RealProject\\DatabaseManager.cs",
               "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\DatabaseManager.cs",
               "RelativeToolTip": "RealProject\\DatabaseManager.cs",
-              "ViewState": "AgIAABMBAAAAAAAAAAAuwCsBAABpAAAAAAAAAA==",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAowGQAAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-23T12:59:36.168Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PokeBattleManager.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\PokeBattleManager.cs",
-              "RelativeDocumentMoniker": "RealProject\\PokeBattleManager.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\PokeBattleManager.cs",
-              "RelativeToolTip": "RealProject\\PokeBattleManager.cs",
-              "ViewState": "AgIAAIYBAAAAAAAAAAAkwKEBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-23T13:04:27.812Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CoroutineManager.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\CoroutineManager.cs",
-              "RelativeDocumentMoniker": "RealProject\\CoroutineManager.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\CoroutineManager.cs",
-              "RelativeToolTip": "RealProject\\CoroutineManager.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAIwAsAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T14:57:05.283Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "TilemapManager.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\TilemapManager.cs",
-              "RelativeDocumentMoniker": "RealProject\\TilemapManager.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\TilemapManager.cs",
-              "RelativeToolTip": "RealProject\\TilemapManager.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAKoAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T12:25:44.676Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Player.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Player.cs",
-              "RelativeDocumentMoniker": "RealProject\\Player.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Player.cs",
-              "RelativeToolTip": "RealProject\\Player.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAwwAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T14:00:53.312Z",
+              "WhenOpened": "2025-11-03T14:07:05.182Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "UIRect.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UIRect.cs",
-              "RelativeDocumentMoniker": "RealProject\\UIRect.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UIRect.cs",
-              "RelativeToolTip": "RealProject\\UIRect.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAowD0AAAAXAAAAAAAAAA==",
+              "Title": "PokeBattleInstance.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\PokeBattleInstance.cs",
+              "RelativeDocumentMoniker": "RealProject\\PokeBattleInstance.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\PokeBattleInstance.cs",
+              "RelativeToolTip": "RealProject\\PokeBattleInstance.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAgwCkAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T20:43:03.112Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "UITextBox.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UITextBox.cs",
-              "RelativeDocumentMoniker": "RealProject\\UITextBox.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UITextBox.cs",
-              "RelativeToolTip": "RealProject\\UITextBox.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAcwCoAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-30T12:05:13.516Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T13:06:33.065Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "UISlider.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UISlider.cs",
-              "RelativeDocumentMoniker": "RealProject\\UISlider.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UISlider.cs",
-              "RelativeToolTip": "RealProject\\UISlider.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAowEAAAAAaAAAAAAAAAA==",
+              "Title": "Global.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Global.cs",
+              "RelativeDocumentMoniker": "RealProject\\Global.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Global.cs",
+              "RelativeToolTip": "RealProject\\Global.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAQwBEAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-06T13:58:13.138Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T13:05:09.741Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "UIButton.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UIButton.cs",
-              "RelativeDocumentMoniker": "RealProject\\UIButton.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UIButton.cs",
-              "RelativeToolTip": "RealProject\\UIButton.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAiwA8AAAAgAAAAAAAAAA==",
+              "Title": "ColliderManager.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\ColliderManager.cs",
+              "RelativeDocumentMoniker": "RealProject\\ColliderManager.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\ColliderManager.cs",
+              "RelativeToolTip": "RealProject\\ColliderManager.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAiwHEAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-05T16:22:58.675Z",
+              "WhenOpened": "2025-10-17T08:09:27.781Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Player.cs",
+              "RelativeDocumentMoniker": "RealProject\\Player.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Player.cs",
+              "RelativeToolTip": "RealProject\\Player.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAIcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-07T10:42:18.417Z",
               "EditorCaption": ""
             },
             {
@@ -329,49 +178,169 @@
               "RelativeDocumentMoniker": "RealProject\\BoxCollider.cs",
               "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\BoxCollider.cs",
               "RelativeToolTip": "RealProject\\BoxCollider.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAowGEAAACDAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T11:47:59.942Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-17T08:07:46.87Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "InputManager.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\InputManager.cs",
-              "RelativeDocumentMoniker": "RealProject\\InputManager.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\InputManager.cs",
-              "RelativeToolTip": "RealProject\\InputManager.cs",
-              "ViewState": "AgIAAJ8AAAAAAAAAAAAqwLYAAAAAAAAAAAAAAA==",
+              "Title": "Collider.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Collider.cs",
+              "RelativeDocumentMoniker": "RealProject\\Collider.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Collider.cs",
+              "RelativeToolTip": "RealProject\\Collider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T13:26:10.742Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-17T08:07:27.948Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PokeBattleInstance.cs",
-              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\PokeBattleInstance.cs",
-              "RelativeDocumentMoniker": "RealProject\\PokeBattleInstance.cs",
-              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\PokeBattleInstance.cs",
-              "RelativeToolTip": "RealProject\\PokeBattleInstance.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAgwE0AAABcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-13T21:00:45.21Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "PokemonInstance.cs",
               "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\PokemonInstance.cs",
               "RelativeDocumentMoniker": "RealProject\\PokemonInstance.cs",
               "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\PokemonInstance.cs",
               "RelativeToolTip": "RealProject\\PokemonInstance.cs",
-              "ViewState": "AgIAABwBAAAAAAAAAAAswCcBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKoAAAAAAAAAAAAcwL8AAAB+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-20T18:31:10.038Z",
+              "WhenOpened": "2025-10-21T09:35:50.34Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CoroutineManager.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\CoroutineManager.cs",
+              "RelativeDocumentMoniker": "RealProject\\CoroutineManager.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\CoroutineManager.cs",
+              "RelativeToolTip": "RealProject\\CoroutineManager.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowFYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T13:21:38.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "OverworldPokemonInstance.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\OverworldPokemonInstance.cs",
+              "RelativeDocumentMoniker": "RealProject\\OverworldPokemonInstance.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\OverworldPokemonInstance.cs",
+              "RelativeToolTip": "RealProject\\OverworldPokemonInstance.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T16:51:53.38Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UIManager.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UIManager.cs",
+              "RelativeDocumentMoniker": "RealProject\\UIManager.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UIManager.cs",
+              "RelativeToolTip": "RealProject\\UIManager.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAmwEgAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-15T09:17:23.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "UITextBox.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UITextBox.cs",
+              "RelativeDocumentMoniker": "RealProject\\UITextBox.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UITextBox.cs",
+              "RelativeToolTip": "RealProject\\UITextBox.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-15T09:15:17.303Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "EnemyBattleAI.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\EnemyBattleAI.cs",
+              "RelativeDocumentMoniker": "RealProject\\EnemyBattleAI.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\EnemyBattleAI.cs",
+              "RelativeToolTip": "RealProject\\EnemyBattleAI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T13:12:00.517Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PokeBattleManager.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\PokeBattleManager.cs",
+              "RelativeDocumentMoniker": "RealProject\\PokeBattleManager.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\PokeBattleManager.cs",
+              "RelativeToolTip": "RealProject\\PokeBattleManager.cs",
+              "ViewState": "AgIAAGEDAAAAAAAAAAAowG8DAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T13:05:31.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "UISlider.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UISlider.cs",
+              "RelativeDocumentMoniker": "RealProject\\UISlider.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UISlider.cs",
+              "RelativeToolTip": "RealProject\\UISlider.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAmwGcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-15T09:12:00.03Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Game1.cs",
+              "RelativeDocumentMoniker": "RealProject\\Game1.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\Game1.cs",
+              "RelativeToolTip": "RealProject\\Game1.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T16:51:35.915Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "InputManager.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\InputManager.cs",
+              "RelativeDocumentMoniker": "RealProject\\InputManager.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\InputManager.cs",
+              "RelativeToolTip": "RealProject\\InputManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T16:51:52.807Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "UIButton.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UIButton.cs",
+              "RelativeDocumentMoniker": "RealProject\\UIButton.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UIButton.cs",
+              "RelativeToolTip": "RealProject\\UIButton.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAkwEQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-15T09:10:40.525Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UIRect.cs",
+              "DocumentMoniker": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UIRect.cs",
+              "RelativeDocumentMoniker": "RealProject\\UIRect.cs",
+              "ToolTip": "C:\\Users\\adam\\OneDrive - Altus Education Partnership\\Adam Prz - NEA Comp Sci\\Project\\RealProject\\RealProject\\UIRect.cs",
+              "RelativeToolTip": "RealProject\\UIRect.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAzwGgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-15T09:05:32.672Z"
             }
           ]
         }

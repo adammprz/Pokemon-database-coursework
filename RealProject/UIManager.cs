@@ -36,13 +36,13 @@ namespace RealProject
             gen1SpriteSheet = content.Load<Texture2D>("PokemonSpriteSheet_1");
 
             overworldRects.Add("Button_Pokemon",
-                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(18, 212, 76, 24)), -186, 80, null, new Vector2(76 * 6, 24 * 6))); // Pokemon
+                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(18, 212, 76, 24)), -31 * Global.pixelsPerUnit, 13 * Global.pixelsPerUnit, null, new Vector2(76, 24) * Global.pixelsPerUnit)); // Pokemon
             overworldRects.Add("Button_Bag",
-                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(18, 244, 76, 24)), -186, 240, SwitchBagMenu, new Vector2(76 * 6, 24 * 6), overworldRects["Button_Pokemon"])); // Bag
+                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(18, 244, 76, 24)), -31 * Global.pixelsPerUnit, 40 * Global.pixelsPerUnit, SwitchBagMenu, new Vector2(76, 24) * Global.pixelsPerUnit, overworldRects["Button_Pokemon"])); // Bag
             overworldRects.Add("Button_Pokedex",
-                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(18, 276, 76, 24)), -186, 400, null, new Vector2(76 * 6, 24 * 6), overworldRects["Button_Pokemon"])); // Pokedex
+                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(18, 276, 76, 24)), -31 * Global.pixelsPerUnit, 67 * Global.pixelsPerUnit, null, new Vector2(76, 24) * Global.pixelsPerUnit, overworldRects["Button_Pokemon"])); // Pokedex
             overworldRects.Add("Button_Save",
-                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(18, 308, 76, 24)), -186, 560, null, new Vector2(76 * 6, 24 * 6), overworldRects["Button_Pokemon"])); // Save
+                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(18, 308, 76, 24)), -31 * Global.pixelsPerUnit, 94 * Global.pixelsPerUnit, null, new Vector2(76, 24) * Global.pixelsPerUnit, overworldRects["Button_Pokemon"])); // Save
 
 
 
@@ -50,7 +50,7 @@ namespace RealProject
             bagRects.Add("Image_Bag",
                 new UIRect(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(112, 192, 320, 180)), Global.screenWidth / 2, Global.screenHeight / 2)); // Bag
             bagRects.Add("Button_Close",
-                new UIButton(null, 1848, 60, SwitchBagMenu, new Vector2(12 * 6, 12 * 6), bagRects["Image_Bag"])); // Bag Back
+                new UIButton(null, 308 * Global.pixelsPerUnit, 10 * Global.pixelsPerUnit, SwitchBagMenu, new Vector2(2, 2) * Global.pixelsPerUnit, bagRects["Image_Bag"])); // Bag Back
 
             bagRects["Image_Bag"].SetEnabled(false);
 
@@ -76,33 +76,33 @@ namespace RealProject
                 new UIRect(Global.CropTexture(content.Load<Texture2D>("battleMenu"), new Rectangle(297, 4, 320, 48)), Global.screenWidth / 2, Global.screenHeight * 0.875f - 9, battleRects["Image_Background"])); // BattleMenu
 
             battleRects.Add("Button_Fight",
-                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 1329, 888, PokeBattleManager.ShowAttacks, new Vector2(45 * 6, 12 * 6), battleRects["Image_BattleMenu"])); // Fight
+                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 222 * Global.pixelsPerUnit, 147.5f * Global.pixelsPerUnit, PokeBattleManager.ShowAttacks, new Vector2(45, 12) * Global.pixelsPerUnit, battleRects["Image_BattleMenu"])); // Fight
             battleRects.Add("Button_Bag", 
-                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 1695, 888, null, new Vector2(45 * 6, 12 * 6), battleRects["Image_BattleMenu"])); // Bag
+                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 283 * Global.pixelsPerUnit, 147.5f * Global.pixelsPerUnit, null, new Vector2(45, 12) * Global.pixelsPerUnit, battleRects["Image_BattleMenu"])); // Bag
             battleRects.Add("Button_Pokemon", 
-                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 1329, 984, null, new Vector2(45 * 6, 12 * 6), battleRects["Image_BattleMenu"])); // Pokemon
+                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 222 * Global.pixelsPerUnit, 163.5f * Global.pixelsPerUnit, null, new Vector2(45, 12) * Global.pixelsPerUnit, battleRects["Image_BattleMenu"])); // Pokemon
             battleRects.Add("Button_Run", 
-                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 1695, 984, PokeBattleManager.OnRunChosen, new Vector2(45 * 6, 12 * 6), battleRects["Image_BattleMenu"])); // Run
+                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 283 * Global.pixelsPerUnit, 163.5f * Global.pixelsPerUnit, PokeBattleManager.OnRunChosen, new Vector2(45, 12) * Global.pixelsPerUnit, battleRects["Image_BattleMenu"])); // Run
             battleRects.Add("Image_Selected", 
                 new UIRect(Global.CropTexture(content.Load<Texture2D>("battleMenu"), new Rectangle(200, 16, 47, 14)), 1329, 900, battleRects["Image_BattleMenu"])); // Select Image
 
             battleRects.Add("Button_Attack1",
-                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 51 * Global.pixelsPerUnit, 149 * Global.pixelsPerUnit, () => CoroutineManager.Start(PokeBattleManager.OnAttackChosen(0)), new Vector2(76, 14)*Global.pixelsPerUnit, battleRects["Image_AttackMenu"]));
+                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 51 * Global.pixelsPerUnit, 147 * Global.pixelsPerUnit, () => CoroutineManager.Start(PokeBattleManager.OnAttackChosen(0)), new Vector2(76, 14) * Global.pixelsPerUnit, battleRects["Image_AttackMenu"]));
             battleRects.Add("Button_Attack2",
-                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 155 * Global.pixelsPerUnit, 149 * Global.pixelsPerUnit, () => CoroutineManager.Start(PokeBattleManager.OnAttackChosen(1)), new Vector2(76, 14) * Global.pixelsPerUnit, battleRects["Image_AttackMenu"]));
+                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 155 * Global.pixelsPerUnit, 147 * Global.pixelsPerUnit, () => CoroutineManager.Start(PokeBattleManager.OnAttackChosen(1)), new Vector2(76, 14) * Global.pixelsPerUnit, battleRects["Image_AttackMenu"]));
             battleRects.Add("Button_Attack3",
-                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 51 * Global.pixelsPerUnit, 165 * Global.pixelsPerUnit, () => CoroutineManager.Start(PokeBattleManager.OnAttackChosen(2)), new Vector2(76, 14) * Global.pixelsPerUnit, battleRects["Image_AttackMenu"]));
+                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 51 * Global.pixelsPerUnit, 164 * Global.pixelsPerUnit, () => CoroutineManager.Start(PokeBattleManager.OnAttackChosen(2)), new Vector2(76, 14) * Global.pixelsPerUnit, battleRects["Image_AttackMenu"]));
             battleRects.Add("Button_Attack4",
-                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 155 * Global.pixelsPerUnit, 165 * Global.pixelsPerUnit, () => CoroutineManager.Start(PokeBattleManager.OnAttackChosen(3)), new Vector2(76, 14) * Global.pixelsPerUnit, battleRects["Image_AttackMenu"]));
+                new UIButton(Global.CropTexture(content.Load<Texture2D>("menu1"), new Rectangle(0, 0, 47, 14)), 155 * Global.pixelsPerUnit, 164 * Global.pixelsPerUnit, () => CoroutineManager.Start(PokeBattleManager.OnAttackChosen(3)), new Vector2(76, 14) * Global.pixelsPerUnit, battleRects["Image_AttackMenu"]));
 
             battleRects.Add("Text_Attack1",
-                new UITextBox(20 * Global.pixelsPerUnit, 141 * Global.pixelsPerUnit, "Attack_1", new Color(72, 72, 72), 0, true, new Color(208, 208, 200), battleRects["Button_Attack1"]));
+                new UITextBox(20 * Global.pixelsPerUnit, 139 * Global.pixelsPerUnit, "Attack_1", new Color(72, 72, 72), 0, true, new Color(208, 208, 200), battleRects["Button_Attack1"]));
             battleRects.Add("Text_Attack2",
-                new UITextBox(124 * Global.pixelsPerUnit, 141 * Global.pixelsPerUnit, "Attack_2", new Color(72, 72, 72), 0, true, new Color(208, 208, 200), battleRects["Button_Attack2"]));
+                new UITextBox(124 * Global.pixelsPerUnit, 139 * Global.pixelsPerUnit, "Attack_2", new Color(72, 72, 72), 0, true, new Color(208, 208, 200), battleRects["Button_Attack2"]));
             battleRects.Add("Text_Attack3",
-                new UITextBox(20 * Global.pixelsPerUnit, 157 * Global.pixelsPerUnit, "Attack_3", new Color(72, 72, 72), 0, true, new Color(208, 208, 200), battleRects["Button_Attack3"]));
+                new UITextBox(20 * Global.pixelsPerUnit, 154 * Global.pixelsPerUnit, "Attack_3", new Color(72, 72, 72), 0, true, new Color(208, 208, 200), battleRects["Button_Attack3"]));
             battleRects.Add("Text_Attack4",
-                new UITextBox(124 * Global.pixelsPerUnit, 157 * Global.pixelsPerUnit, "Attack_4", new Color(72, 72, 72), 0, true, new Color(208, 208, 200), battleRects["Button_Attack4"]));
+                new UITextBox(124 * Global.pixelsPerUnit, 154 * Global.pixelsPerUnit, "Attack_4", new Color(72, 72, 72), 0, true, new Color(208, 208, 200), battleRects["Button_Attack4"]));
 
             battleRects.Add("Image_AttackSelect",
                 new UIRect(Global.CropTexture(content.Load<Texture2D>("battleMenu"), new Rectangle(269, 4, 6, 10)), 3000, 900, battleRects["Image_AttackMenu"])); // Select Image
@@ -163,13 +163,13 @@ namespace RealProject
                 UIButton d = (UIButton)battleRects["Button_Run"];
 
                 if (a.CheckHover())
-                    battleRects["Image_Selected"].SetPosition(a.pos + Vector2.UnitY*12);
+                    battleRects["Image_Selected"].SetPosition(a.pos + Vector2.UnitY * 1 * Global.pixelsPerUnit);
                 else if (b.CheckHover())
-                    battleRects["Image_Selected"].SetPosition(b.pos + Vector2.UnitY * 12);
+                    battleRects["Image_Selected"].SetPosition(b.pos + Vector2.UnitY * 1 * Global.pixelsPerUnit);
                 else if (c.CheckHover())
-                    battleRects["Image_Selected"].SetPosition(c.pos + Vector2.UnitY * 12);
+                    battleRects["Image_Selected"].SetPosition(c.pos + Vector2.UnitY * 1 * Global.pixelsPerUnit);
                 else if (d.CheckHover())
-                    battleRects["Image_Selected"].SetPosition(d.pos + Vector2.UnitY * 12);
+                    battleRects["Image_Selected"].SetPosition(d.pos + Vector2.UnitY * 1 * Global.pixelsPerUnit);
             }
             if (battleRects["Image_AttackMenu"].enabled)
             {
@@ -250,11 +250,11 @@ namespace RealProject
         {
             if (b.CheckHover())
             {
-                b.SetPosition(Vector2.Lerp(b.pos, new Vector2(216, b.pos.Y), Global.deltaTime * 6));
+                b.SetPosition(Vector2.Lerp(b.pos, new Vector2(31 * Global.pixelsPerUnit, b.pos.Y), Global.deltaTime * 6));
             }
             else
             {
-                b.SetPosition(Vector2.Lerp(b.pos, new Vector2(-186, b.pos.Y), Global.deltaTime * 6));
+                b.SetPosition(Vector2.Lerp(b.pos, new Vector2(-31 * Global.pixelsPerUnit, b.pos.Y), Global.deltaTime * 6));
             }
         }
 
@@ -262,10 +262,10 @@ namespace RealProject
         {
             DrawAllUI(spriteBatch);
 
-            spriteBatch.DrawString(Global.pokeFont, Global.currentTypeText, Global.currentTypePos + new Vector2(6, 0), new Color(50, 50, 50), 0, Vector2.Zero, 6, SpriteEffects.None, 0);
-            spriteBatch.DrawString(Global.pokeFont, Global.currentTypeText, Global.currentTypePos + new Vector2(0, 6), new Color(50, 50, 50), 0, Vector2.Zero, 6, SpriteEffects.None, 0);
-            spriteBatch.DrawString(Global.pokeFont, Global.currentTypeText, Global.currentTypePos + new Vector2(6, 6), new Color(50, 50, 50), 0, Vector2.Zero, 6, SpriteEffects.None, 0);
-            spriteBatch.DrawString(Global.pokeFont, Global.currentTypeText, Global.currentTypePos, Color.White, 0, Vector2.Zero, 6, SpriteEffects.None, 0);
+            spriteBatch.DrawString(Global.pokeFont, Global.currentTypeText, Global.currentTypePos + new Vector2(Global.pixelsPerUnit, 0), new Color(50, 50, 50), 0, Vector2.Zero, Global.pixelsPerUnit, SpriteEffects.None, 0);
+            spriteBatch.DrawString(Global.pokeFont, Global.currentTypeText, Global.currentTypePos + new Vector2(0, Global.pixelsPerUnit), new Color(50, 50, 50), 0, Vector2.Zero, Global.pixelsPerUnit, SpriteEffects.None, 0);
+            spriteBatch.DrawString(Global.pokeFont, Global.currentTypeText, Global.currentTypePos + new Vector2(Global.pixelsPerUnit, Global.pixelsPerUnit), new Color(50, 50, 50), 0, Vector2.Zero, Global.pixelsPerUnit, SpriteEffects.None, 0);
+            spriteBatch.DrawString(Global.pokeFont, Global.currentTypeText, Global.currentTypePos, Color.White, 0, Vector2.Zero, Global.pixelsPerUnit, SpriteEffects.None, 0);
 
             if (transitionAnimationData[0] != Color.HotPink)
             {

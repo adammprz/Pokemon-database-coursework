@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection.Metadata;
 
 namespace RealProject
 {
@@ -18,11 +19,7 @@ namespace RealProject
         Texture2D screenBuffer;
         Color[] pixelData;
 
-        TilemapManager tmManager;
-
-        ColliderManager colManager;
-
-        Player player;
+        OverworldPokemonInstance a;
 
         public Game1()
         {
@@ -45,21 +42,17 @@ namespace RealProject
 
             EnvironmentManager.Initialize(this.Content);
 
-            PokeBattleManager.Initialiize(this.Content);
+            PokeBattleManager.Initialize(this.Content);
 
-            Global.StartTypewriter("Morning starchild; the world says hello!", new Vector2(0, Global.screenHeight/2));
+            //Global.StartTypewriter("Morning starchild; the world says hello!", new Vector2(0, Global.screenHeight/2));
+  
+            TilemapManager.Initialize(this.Content.Load<Texture2D>("test9"), this.Content.Load<Texture2D>("tileset"));
+            TilemapManager.OverrideExtrasMap('I', 68, 67);
 
-            
-            tmManager = new TilemapManager(this.Content.Load<Texture2D>("test9"), this.Content.Load<Texture2D>("tileset"));
-            tmManager.Initialize();
-            tmManager.OverrideExtrasMap('I', 68, 67);
+            Player.Initialize(this.Content.Load<Texture2D>("PlayerSprites"));
 
-            player = new Player(this.Content.Load<Texture2D>("PlayerSprites"));
-            player.Initialize();
-
-            colManager = new ColliderManager(this.Content.Load<Texture2D>("test9"), player, this.Content.Load<SpriteFont>("File"));
-            colManager.Initialize();
-            colManager.OverrideColliderMap('x', 68, 67);
+            ColliderManager.Initialize(this.Content.Load<Texture2D>("test9"), this.Content.Load<SpriteFont>("File"));
+            ColliderManager.OverrideColliderMap('x', 68, 67);
 
             _graphics.ApplyChanges();
 
@@ -74,15 +67,15 @@ namespace RealProject
 
         protected override void Update(GameTime gameTime)
         {
-            Global.Update(gameTime, player.playerPos, InputManager.GetMousePosition());
+            Global.Update(gameTime, Player.playerPos, InputManager.GetMousePosition());
             CoroutineManager.Update();
             InputManager.Update();
             UIManager.Update();
             EnvironmentManager.Update();
             PokeBattleManager.Update();
+            ColliderManager.Update();
 
-            player.Update();
-            colManager.Update();
+            Player.Update();
 
             if (InputManager.GetKeyDown(Keys.Escape))
                 if(GameStateManager.gameState == GameStateManager.GameState.Menu)
@@ -96,22 +89,16 @@ namespace RealProject
 
             if (InputManager.GetKeyDown(Keys.P))
             {
-                PokemonInstance testTreeko = DatabaseManager.GetBasePokemonData(1, 7, true);
-                testTreeko.RandomisePokemon([DatabaseManager.GetBasePokemonData(1, 1)]);
-                testTreeko.name = "Tester";
-                //testTreeko.atkStat = 1000;
-                //testTreeko.currentHealth = 15;
-
-                PokemonInstance enemyTreekoTest = DatabaseManager.GetBasePokemonData(1, 5);
-                enemyTreekoTest.RandomisePokemon([testTreeko]);
+                PokemonInstance enemyTreekoTest = DatabaseManager.GetBasePokemonData(1, 12);
+                enemyTreekoTest.RandomisePokemon(Player.pokemonParty);
                 //enemyTreekoTest.currentHealth = 4;
                 //enemyTreekoTest.statusCondition = new StatusEffects(PrimaryStatusConditions.Sleep, Global.random.Next(1, 4));
-                //enemyTreekoTest.statusCondition = new StatusEffects(PrimaryStatusConditions.Sleep, 2);
+                enemyTreekoTest.statusCondition = new StatusEffects(PrimaryStatusConditions.Freeze);
                 //enemyTreekoTest.volatileStatuses.Add(new StatusEffects(Global.random.Next(2, 6), VolatileStatusConditions.Confusion));
                 //enemyTreekoTest.speStat = 5;
 
                 PokeBattleManager.BeginBattle(
-                    [testTreeko],
+                    Player.pokemonParty,
                     [enemyTreekoTest],
                     0,
                     2);
@@ -132,11 +119,11 @@ namespace RealProject
             SamplerState.PointClamp,
             null, null, null, null);
 
-                tmManager.Draw(_spriteBatch);
+                TilemapManager.Draw(_spriteBatch);
 
-                player.Draw(_spriteBatch);
+                Player.Draw(_spriteBatch);
 
-                colManager.Draw(_spriteBatch);
+                ColliderManager.Draw(_spriteBatch);
 
                 EnvironmentManager.Draw(_spriteBatch);
 

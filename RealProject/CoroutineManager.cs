@@ -72,7 +72,32 @@ namespace RealProject
                     if (current is float waitTime)
                         instance.timer = waitTime;
                     else if (current == null)
-                        instance.timer = 0f;
+                    {
+                        bool doneIterating = false;
+                        while (!doneIterating)
+                        {
+                            doneIterating = true;
+
+                            if (!instance.enumerator.MoveNext())
+                            {
+                                toRemove.Add(instance);
+                            }
+                            else
+                            {
+
+                                object c = instance.enumerator.Current;
+
+                                if (c == null)
+                                {
+                                    doneIterating = false;
+                                }
+                                else if (c is float w)
+                                    instance.timer = w;
+                                else
+                                    instance.timer = 0f;
+                            }
+                        }
+                    }
                     else if (current is CoroutineInstance)
                         instance.timer = 0f; // nested will be checked next frame
                     else

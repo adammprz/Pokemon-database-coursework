@@ -8,10 +8,14 @@ using Microsoft.Xna.Framework;
 
 namespace RealProject
 {
-    abstract class Collider
+    public abstract class Collider
     {
         public Vector2 colliderOffset;
         public bool isTrigger;
+
+        public bool colliding;
+
+        public event TriggerEventHandler TriggerEnter;
 
         public Collider(Vector2 offset, bool trig)
         {
@@ -21,5 +25,11 @@ namespace RealProject
 
         public abstract bool CheckPlayerCollision(Vector2 a, Vector2 b, Vector2 c, Vector2 d);
         public abstract Vector2 ResolveCollision(Vector2 a, Vector2 b, Vector2 c, Vector2 d);
+        public delegate void TriggerEventHandler(Collider collider);
+
+        public virtual void OnTriggerEnter()
+        {
+            TriggerEnter?.Invoke(this);
+        }
     }
 }

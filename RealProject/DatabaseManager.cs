@@ -105,6 +105,32 @@ namespace RealProject
 
             return null;
         }
+
+        public static Texture2D GetOverworldPokeData(int id)
+        {
+            dbRelativePath = @"..\..\..\..\PokemonDatabase.db";
+
+            using var connection = new SqliteConnection($"Data Source={dbRelativePath}");
+            connection.Open();
+
+            string query = "SELECT TextureX, TextureY FROM Pokemon WHERE PokeID = @id";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@id", id);
+
+            using var reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                int x = reader.GetInt32(reader.GetOrdinal("TextureX"));
+                int y = reader.GetInt32(reader.GetOrdinal("TextureY"));
+
+                return Global.CropTexture(UIManager.gen1SpriteSheet, new Rectangle(x + 63, y - 34, 32, 32)); ;
+            }
+
+            return null;
+        }
+
         public static string GetTypeName(int id)
         {
             dbRelativePath = @"..\..\..\..\PokemonDatabase.db";
@@ -187,8 +213,11 @@ namespace RealProject
                 int accuracy = reader.GetInt32(reader.GetOrdinal("MoveAccuracy"));
                 int pp = reader.GetInt32(reader.GetOrdinal("MovePP"));
                 int property = reader.GetInt32(reader.GetOrdinal("MoveProperty"));
+                int priority = reader.GetInt32(reader.GetOrdinal("MovePriority"));
+                string effect = reader.GetString(reader.GetOrdinal("MoveAction"));
+                int affectsUser = reader.GetInt32(reader.GetOrdinal("ActionAffectsPlayer"));
 
-                return new MoveInstance(id, name, damage, accuracy, type, pp, property);
+                return new MoveInstance(id, name, damage, accuracy, type, pp, property, priority, effect, affectsUser);
             }
 
             return null;
@@ -267,19 +296,6 @@ namespace RealProject
 
             return multiplier;
         }
-
-        //public static MoveData GetMoveData(int id) 
-        //{ 
-        //    return; 
-        //}
-        //public static BaseStats GetBaseStats(int id) 
-        //{ 
-        //    return; 
-        //}
-        //public static List<LearnableMove> GetLearnset(int id) 
-        //{ 
-        //    return; 
-        //}
     }
     public class MoveInstance
     {
@@ -295,9 +311,12 @@ namespace RealProject
         public int typeID;
         public int property;
 
-        public Action effect;
+        public string effectKey;
+        public bool affectsUser;
 
-        public MoveInstance(int id, string name, int damage, int accuracy, int type, int pp, int property)
+        public int priority;
+
+        public MoveInstance(int id, string name, int damage, int accuracy, int type, int pp, int property, int priority, string effect = "", int userAffected = 1)
         {
             this.id = id;
             this.name = name;
@@ -306,7 +325,12 @@ namespace RealProject
             this.typeID = type;
             this.maxPP = pp;
             this.property = property;
+            this.priority = priority;
             currentPP = pp;
+
+            effectKey = effect;
+
+            affectsUser = userAffected == 1? true : false;
         }
     }
 }

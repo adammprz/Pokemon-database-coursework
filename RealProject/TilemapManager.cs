@@ -10,40 +10,37 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace RealProject
 {
-    internal class TilemapManager
+    static class TilemapManager
     {
-        public char[,] map = {
+        public static char[,] map = {
             { 'I', 'a', 'b', 'c', ' '},
             { 'd', 'E', 'i', 'j', ' '},
             { 'h', 'i', 'I', 'f', 'g'},
             { 'k', 'l', 'i', 'i', 'j'},
             { ' ', 'o', 'T', 'p', 'n'}};
 
-        public char[,] extraGroundMap = {
+        public static char[,] extraGroundMap = {
             { 'K', 'L', ' ', ' ', ' '},
             { ' ', 'H', ' ', ' ', ' '},
             { ' ', 'O', 'P', 'P', 'Q'},
             { ' ', ' ', ' ', ' ', ' '},
             { ' ', ' ', ' ', ' ', ' '}};
 
-        Dictionary<char, Vector2> tileDictionary = new Dictionary<char, Vector2>();
+        static Dictionary<char, Vector2> tileDictionary = new Dictionary<char, Vector2>();
 
-        Texture2D mapPNG;
-        Texture2D tilemap;
+        static Texture2D mapPNG;
+        static Texture2D tilemap;
 
-        public TilemapManager(Texture2D t, Texture2D tilemap)
+        public static void Initialize(Texture2D t, Texture2D map)
         {
             mapPNG = t;
-            this.tilemap = tilemap;
-        }
+            tilemap = map;
 
-        public void Initialize()
-        {
             InitializeTiles();
             GetTileMapFromImage(mapPNG);
         }
 
-        void InitializeTiles()
+        static void InitializeTiles()
         {
             //Dictionary<char, Vector2> tileDictionary = new Dictionary<char, Vector2>();
 
@@ -102,7 +99,7 @@ namespace RealProject
             Debug.WriteLine((int)'a');
         }
 
-        void GetTileMapFromImage(Texture2D mapImg)
+        static void GetTileMapFromImage(Texture2D mapImg)
         {
             int width = mapImg.Width;
             int height = mapImg.Height;
@@ -137,17 +134,17 @@ namespace RealProject
             }
         }
 
-        public void OverrideBaseMap(Char c, int x, int y)
+        public static void OverrideBaseMap(Char c, int x, int y)
         {
             map[y, x] = c;
         }
 
-        public void OverrideExtrasMap(Char c, int x, int y)
+        public static void OverrideExtrasMap(Char c, int x, int y)
         {
             extraGroundMap[y, x] = c;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public static void Draw(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < map.GetLength(0); i++)
             {
